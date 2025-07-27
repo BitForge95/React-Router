@@ -1,36 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+
 function Navbar() {
-    return (
-        <>
-            <nav data-bs-theme="dark" class="navbar navbar-expand-lg bg-body-tertiary bg" >
-                <div class="container-fluid">
-                    <h2>Navbar</h2>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                        <Link to="/" class="nav-link active" aria-current="page">Home</Link>
-                        </li>
-                        <li class="nav-item">
-                        <Link class="nav-link" to="/user">User</Link>
-                        </li>
-                        <li class="nav-item">
-                        <Link class="nav-link" to="/about">About</Link>
-                        </li>
-                    </ul>
-                    <span class="navbar-text">
-                        Navbar Trail
-                    </span>
-                    </div>
-                </div>
-                </nav>
-        </>
-    )
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <nav className="navbar">
+      <div className="navbar-container">
+        <h2 className="logo">Navbar</h2>
+        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+          ☰
+        </button>
+        <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
+          <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
+          <li><Link to="/user" onClick={() => setMenuOpen(false)}>User</Link></li>
+          <li><Link to="/about" onClick={() => setMenuOpen(false)}>About</Link></li>
+        </ul>
+      </div>
+    </nav>
+  );
 }
 
-export default Navbar
-
+export default Navbar;
